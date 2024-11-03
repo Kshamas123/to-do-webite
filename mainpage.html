@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to do</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .upbar{
+            background-color: rgb(246, 169, 169);
+            height: 50px;
+            color: aliceblue;
+            padding: 10px;
+        }
+        .container{
+            margin-left: 100px;
+            margin-top: 100px;
+        }
+        .add_task,.task_submit{
+            font-size: x-large;
+            background-color: rgb(246, 169, 169);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .task_submit{
+            margin-top: 10px;
+        }
+        .content{
+            display: none;
+            margin-top: 10px;
+            font-size: x-large;
+        }
+        .text-area{
+            width: 50%;
+            height: 120px;
+            border: 2px solid rgb(250, 117, 117);
+        }
+        .task_content{
+            display: block;
+            width: 80%;
+            height: 75px;
+            margin-left: 5px;
+            border: 0;
+        }
+        .tasks{
+            box-shadow: rgba(244, 134, 134, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            width:75%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 15px 10px;
+            background-color:rgb(246, 169, 169);
+            border-radius: 10px;
+            font-size:25px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="upbar">
+        <h1>TASKTRACK</h1>
+    </header>
+    <div class="container">
+        <button class="add_task">+ Add a New Task</button>
+        <div class="content">
+            <div class="text-area">
+                <!-- <span>Enter Your Task</span> -->
+                <textarea class="task_content" placeholder="Write your task here..."></textarea>
+
+            </div>
+         <button class="task_submit">SUBMIT</button>
+        </div>
+        <div class="task-list"></div>
+    </div>
+    <script>
+        document.querySelector('.add_task').addEventListener('click',function(e){
+            const ele=document.querySelector('.content')
+            if(ele.style.display === 'none'|| ele.style.display === '')
+            ele.style.display = 'block';
+
+        })
+       document.querySelector('.task_submit').addEventListener('click',function(e){
+            const eve=document.querySelector('.task_content')
+            const tasksDiv = document.createElement('div');
+            const taskList = document.querySelector('.task-list');
+            tasksDiv.className="tasks"
+            tasksDiv.textContent = eve.value;
+            taskList.appendChild(tasksDiv);
+            const ele=document.querySelector('.content')
+            ele.style.display = 'none';
+        })
+    </script>
+</body>
+</html>
