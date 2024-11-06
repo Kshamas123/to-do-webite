@@ -15,8 +15,15 @@
             color: aliceblue;
             padding: 10px;
         }
+        .sidebar{
+            background-color: rgb(246, 169, 169);
+            width: 200px;
+            height: 1000px;
+            margin: 0px;
+            margin-top: 10px;
+        }
         .container{
-            margin-left: 100px;
+            margin-left: 300px;
             margin-top: 100px;
         }
         .add_task,.task_submit{
@@ -48,6 +55,7 @@
             height: 75px;
             margin-left: 5px;
             border: 0;
+            font-size: larger;
         }
         .tasks{
             box-shadow: rgba(244, 134, 134, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -60,41 +68,57 @@
             font-size:25px;
             color: white;
         }
+        .list-bar{
+            margin-top: 22px;
+            padding: 25px;
+            font-size: x-large;
+        }
+        a{
+            color: aliceblue;
+            text-decoration: none;
+        }
+        .delbut,.cancel{
+            font-size: x-large;
+            background-color: rgb(246, 169, 169);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <header class="upbar">
         <h1>TASKTRACK</h1>
+        <header class="sidebar">
+            <ul class="list-bar">
+                <li><a href="mainpage.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+               <li class="view"><a href="view.html">View the tasks</a></li>
+            </ul>
+           </header>
     </header>
+   
     <div class="container">
+        
         <button class="add_task">+ Add a New Task</button>
         <div class="content">
             <div class="text-area">
-                <!-- <span>Enter Your Task</span> -->
                 <textarea class="task_content" placeholder="Write your task here..."></textarea>
 
             </div>
          <button class="task_submit">SUBMIT</button>
         </div>
         <div class="task-list"></div>
+    <div class="deletebut">
+        <button class="delbut">Delete</button>
+        <button class="cancel">Cancel</button>
     </div>
-    <script>
-        document.querySelector('.add_task').addEventListener('click',function(e){
-            const ele=document.querySelector('.content')
-            if(ele.style.display === 'none'|| ele.style.display === '')
-            ele.style.display = 'block';
-
-        })
-       document.querySelector('.task_submit').addEventListener('click',function(e){
-            const eve=document.querySelector('.task_content')
-            const tasksDiv = document.createElement('div');
-            const taskList = document.querySelector('.task-list');
-            tasksDiv.className="tasks"
-            tasksDiv.textContent = eve.value;
-            taskList.appendChild(tasksDiv);
-            const ele=document.querySelector('.content')
-            ele.style.display = 'none';
-        })
-    </script>
+    </div>
+   
+    <script src="script.js"></script>
 </body>
 </html>
