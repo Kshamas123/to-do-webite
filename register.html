@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .upbar {
+            background-color: rgb(246, 169, 169);
+            height: 50px;
+            color: aliceblue;
+            padding: 10px;
+        }
+        #login-section {
+            margin-top: 150px;
+        }
+        #login-subsection {
+            text-align: center;
+        }
+        label {
+            display: block;
+            font-size: large;
+        }
+        input {
+            display: inline-block;
+            width: 25%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            background-color: rgb(246, 169, 169);
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 20px auto; /* Center the button */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="upbar">
+        <h1>TASKTRACK</h1>
+    </header>
+    <div id="login-section">
+        <div id="login-subsection">
+            <h1 class="heading">SIGNUP</h1>
+            <div class="content">
+                <form id="signupform">
+                    <label for="name">Name </label>
+                    <input type="text" name="name" id="name">
+                    <label for="password">Password </label>
+                    <input type="text" name="password" id="password">
+                    <label for="email">Email </label>
+                    <input type="email" name="email" id="email">
+                    <button type="submit">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('signupform').addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value;
+
+    
+        console.log(name);
+        console.log(email);
+        console.log(password);
+       })
+    </script>
+</body>
+</html>
