@@ -10,7 +10,7 @@
             padding: 0;
         }
         .upbar {
-            background-color: rgb(246, 169, 169);
+            background-color: #ff6b6b;
             height: 50px;
             color: aliceblue;
             padding: 10px;
@@ -34,7 +34,7 @@
         }
         button {
             display: block;
-            background-color: rgb(246, 169, 169);
+            background-color: #ff6b6b;
             border: none;
             color: white;
             padding: 16px 32px;
@@ -65,7 +65,7 @@
         </div>
     </div>
     <script>
-        document.getElementById('signupform').addEventListener('submit', (e) => {
+        document.getElementById('signupform').addEventListener('submit', async(e) => {
 
         e.preventDefault();
 
@@ -77,7 +77,27 @@
         console.log(name);
         console.log(email);
         console.log(password);
-       })
+
+        const response = await fetch('http://localhost:3000/addregister', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+              Name: name,
+              Password:password,
+              Email:email
+          }),
+          
+      });
+      const result = await response.json();
+      if (response.ok) {
+          alert("ACCOUNT CREATED SUCCESSFULLY");
+          window.location.href = "mainpage.html";
+      } else {
+          alert('Error : ' + result.error);
+      }
+            
+    }
+    )
     </script>
 </body>
 </html>

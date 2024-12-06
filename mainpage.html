@@ -3,121 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>to do</title>
+    <title>TaskTrack</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        .upbar{
-            background-color: rgb(246, 169, 169);
-            height: 50px;
-            color: aliceblue;
-            padding: 10px;
+
+        body {
+            background-color: #f7f9fc;
+            color: #333;
         }
-        .sidebar{
-            background-color: rgb(246, 169, 169);
+
+        .upbar {
+            background-color: #ff6b6b;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .sidebar {
+            background-color: #ff6b6b;
             width: 200px;
-            height: 1000px;
-            margin: 0px;
-            margin-top: 10px;
+            height: 100%;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
         }
-        .container{
-            margin-left: 300px;
-            margin-top: 100px;
-        }
-        .add_task,.task_submit{
-            font-size: x-large;
-            background-color: rgb(246, 169, 169);
-            border: none;
-            color: white;
-            padding: 15px 32px;
+
+        .list-bar {
+            list-style: none;
+            padding: 0;
             text-align: center;
+        }
+
+        .list-bar li {
+            margin-bottom: 20px;
+        }
+
+        .list-bar a {
+            color: white;
             text-decoration: none;
-            display: inline-block;
+            font-size: 1.2em;
+            transition: all 0.3s ease-in-out;
         }
-        .task_submit{
-            margin-top: 10px;
+
+        .list-bar a:hover {
+            color: #ffe3e3;
+            transform: scale(1.1);
         }
-        .content{
+
+        .container {
+            margin-left: 220px;
+            padding: 20px;
+            padding-top: 40px;
+        }
+
+        .add_task {
+            font-size: 1.2em;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .add_task:hover {
+            background-color: #e85d5d;
+            transform: translateY(-2px);
+        }
+
+        .content {
             display: none;
-            margin-top: 10px;
-            font-size: x-large;
+            margin-top: 20px;
         }
-        .text-area{
-            width: 50%;
-            height: 120px;
-            border: 2px solid rgb(250, 117, 117);
+
+        .text-area {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        .task_content{
-            display: block;
-            width: 80%;
-            height: 75px;
-            margin-left: 5px;
-            border: 0;
-            font-size: larger;
-        }
-        .tasks{
-            box-shadow: rgba(244, 134, 134, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-            width:75%;
+
+        .task_content {
+            width: 100%;
             height: 100px;
-            margin-top: 10px;
-            padding: 15px 10px;
-            background-color:rgb(246, 169, 169);
-            border-radius: 10px;
-            font-size:25px;
+            padding: 10px;
+            border: 2px solid #ff6b6b;
+            border-radius: 5px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .task_submit {
+            margin-top: 20px;
+            background-color: #34d399;
             color: white;
-        }
-        .list-bar{
-            margin-top: 22px;
-            padding: 25px;
-            font-size: x-large;
-        }
-        a{
-            color: aliceblue;
-            text-decoration: none;
-        }
-        .delbut,.cancel{
-            font-size: x-large;
-            background-color: rgb(246, 169, 169);
             border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .task_submit:hover {
+            background-color: #22c55e;
+            transform: translateY(-2px);
+        }
+
+        .task-list {
+            margin-top: 30px;
+        }
+
+        .tasks {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            padding: 15px;
+            margin: 15px auto;
+            background-color: white;
+            border-left: 5px solid #ff6b6b;
+            border-radius: 5px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .delbut, .cancel {
+            font-size: 1em;
+            background-color: #ff6b6b;
             color: white;
-            padding: 15px 32px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px auto;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .delbut:hover, .cancel:hover {
+            background-color: #e85d5d;
+            transform: translateY(-2px);
+        }
+
+        .deletebut {
             text-align: center;
-            text-decoration: none;
-            display: block;
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <header class="upbar">
-        <h1>TASKTRACK</h1>
-        <header class="sidebar">
-            <ul class="list-bar">
-                <li><a href="mainpage.html">Home</a></li>
-                <li><a href="profile.html">Profile</a></li>
-               <li class="view"><a href="view.html">View the tasks</a></li>
-            </ul>
-           </header>
+        TASKTRACK
     </header>
-   
+
+    <nav class="sidebar">
+        <ul class="list-bar">
+            <li><a href="mainpage.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="view.html">View Tasks</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
-        
         <button class="add_task">+ Add a New Task</button>
         <div class="content">
             <div class="text-area">
                 <textarea class="task_content" placeholder="Write your task here..."></textarea>
-
             </div>
-         <button class="task_submit">SUBMIT</button>
+            <button class="task_submit">Submit</button>
         </div>
-        <div class="task-list"></div>
-    <div class="deletebut">
-        <button class="delbut">Delete</button>
-        <button class="cancel">Cancel</button>
+        <div class="task-list">
+            <!-- Tasks will appear here -->
+        </div>
+        <div class="deletebut">
+            <button class="delbut">Delete</button>
+            <button class="cancel">Cancel</button>
+        </div>
     </div>
-    </div>
+
+
    
     <script src="script.js"></script>
 </body>
