@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(express.json());
@@ -39,6 +40,34 @@ app.post('/addregister', async (req, res) => {
     } catch (error) {
         console.error('Error during registration:', error);
         res.status(500).send({ error: 'Internal Server Error' });
+    }
+});
+
+//to handle login
+app.post('/login', async (req, res) => {
+    try {
+        const { Name, Password } = req.body;
+
+        if (!Name || !Password ) {
+            return res.status(400).send({ error: 'Name, Password are required' });
+        }
+
+
+        const query = 'SELECT USERNAME,USERPASSWORD FROM USER_DETAILS WHERE USERNAME= ?';
+        const [result] = await pool.query(query, [Name]); 
+        
+        console.log(result);
+        if(result.length===0)
+            return res.status(404).send({ error: 'Invalid Username' });
+        const user = result[0];
+        const isPasswordValid = user.USERPASSWORD===Password;
+        if (!isPasswordValid) {
+            return res.status(401).send({ error: 'Invalid Password' });
+        }
+            res.status(201).send({ message: 'LOGGED IN SUCCESSFULLY'});
+    } catch (error) {
+        console.error('Error during registration:', error);
+        res.status(500).send({ error: 'ACCOUNT NOT FOUND' });
     }
 });
 
